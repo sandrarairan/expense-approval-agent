@@ -9,7 +9,6 @@ Ejecutar desde la raíz del repo:
     .venv/bin/python -m expense_approval_agent.run_with_persistence
 """
 import asyncio
-from typing import Dict, Any
 
 from google.adk.memory import InMemoryMemoryService
 from google.adk.runners import Runner
@@ -17,32 +16,9 @@ from google.adk.sessions import DatabaseSessionService
 from google.genai import types
 
 from .agent import root_agent
+from .auth import authenticate_token
 from .config import SESSION_DB_URL, UMBRAL_APROBACION_AUTO
 from .tools import list_registered_expenses
-
-# Simulación de tokens de tu propio backend (reemplazable por JWT / Firebase Auth / Auth0 / IAP)
-AUTH_TOKENS_DB: Dict[str, Dict[str, Any]] = {
-    "tok_ana_empleado": {
-        "user_id": "ana@empresa.com",
-        "nombre": "Ana Gómez",
-        "rol": "empleado",
-        "limite_aprobacion": 1000.0,
-    },
-    "tok_carlos_gerente": {
-        "user_id": "carlos@empresa.com",
-        "nombre": "Carlos Ruiz",
-        "rol": "gerente",
-        "limite_aprobacion": 5000.0,
-    },
-}
-
-
-def authenticate_token(token: str) -> Dict[str, Any]:
-    """Valida el token fuera del agente; falla rápido si no está autorizado."""
-    user = AUTH_TOKENS_DB.get(token)
-    if not user:
-        raise PermissionError("Token inválido o expirado. Acceso denegado antes de llamar al agente.")
-    return user
 
 
 async def main() -> None:

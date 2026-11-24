@@ -3,6 +3,8 @@ from pathlib import Path
 import sqlite3
 from dotenv import load_dotenv
 
+BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -11,16 +13,33 @@ logger = logging.getLogger("expense_approval_agent")
 # Reglas de negocio globales (fallback si el usuario no tiene límite personalizado)
 UMBRAL_APROBACION_AUTO = 1000.0
 MONEDAS_PERMITIDAS = {"USD", "EUR", "MXN", "COP"}
+ROLE_DEFAULT_LIMITS = {
+    "empleado": 1000.0,
+    "gerente": 5000.0,
+    "director": 15000.0,
+}
 
 # Base de datos de la aplicación (patrón 03d: App DB separada de Session State, en SQLite local)
-BASE_DIR = Path(__file__).resolve().parent
 APP_DB_PATH = BASE_DIR / "expenses_app.db"
 SESSION_DB_URL = f"sqlite+aiosqlite:///{BASE_DIR / 'expense_sessions.db'}"
 
 
 def init_app_db() -> None:
-    """Inicializa la tabla de gastos registrados en la App DB local con trazabilidad de usuario."""
+    """Inicializa las tablas de usuarios y gastos registrados en la App DB local."""
     with sqlite3.connect(APP_DB_PATH) as conn:
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                email TEXT UNIQUE NOT NULL,
+                nombre TEXT NOT NULL,
+                rol TEXT NOT NULL DEFAULT 'empleado',
+                limite_aprobacion REAL NOT NULL DEFAULT 1000.0,
+                password_hash TEXT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+            """
+        )
         conn.execute(
             """
             CREATE TABLE IF NOT EXISTS expenses (

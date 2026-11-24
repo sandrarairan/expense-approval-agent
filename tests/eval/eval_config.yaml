@@ -1,0 +1,24 @@
+metrics_to_run:
+  - non_empty_response
+  - expense_decision_quality
+
+custom_metrics:
+  - name: non_empty_response
+    custom_function: |
+      def evaluate(instance):
+          resp = instance.get("response") or {}
+          parts = resp.get("parts") or []
+          text = " ".join(p.get("text", "") for p in parts if p.get("text"))
+          return {"score": 1.0 if len(text.strip()) > 0 else 0.0}
+
+  - name: expense_decision_quality
+    prompt_template: |
+      Evalúa del 1 al 5 si el agente de aprobación de gastos respondió correctamente según las reglas (<= 1000 se auto-aprueba y registra; > 1000 pide aprobación humana; <= 0 se rechaza).
+      Prompt del usuario: {prompt}
+      Respuesta final: {response}
+      Traza completa: {agent_data}
+      Devuelve JSON: {"score": <1|2|3|4|5>, "explanation": "<razón breve>"}
+
+thresholds:
+  non_empty_response: 1.0
+  expense_decision_quality: 4.0

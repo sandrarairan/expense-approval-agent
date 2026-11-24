@@ -1,0 +1,17 @@
+[project]
+name = "expense-approval-agent"
+version = "0.1.0"
+description = "Agente de aprobación de gastos y contratos con Google ADK 2.0 (Workflow Graph + Human-in-the-Loop + SQLite)."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "google-adk[eval]>=2.0.0",
+    "sqlalchemy>=2.0.0",
+    "aiosqlite>=0.20.0",
+    "greenlet>=3.0.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+]
+
+[tool.setuptools]
+packages = ["expense_approval_agent"]

@@ -1,0 +1,96 @@
+{
+  "eval_set_id": "eval_set_1",
+  "name": "eval_set_1",
+  "eval_cases": [
+    {
+      "eval_id": "contrato_555555_usd",
+      "conversation": [
+        {
+          "invocation_id": "e-96ffe594-5ac2-4c24-9c5c-c40e1912a239",
+          "user_content": {
+            "parts": [
+              {
+                "text": "contrato 555555 usd"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "⚠️ Aprobación humana requerida:\n- Solicitante: user\n- Concepto: Contrato\n- Monto: 555555.0 USD\n- Categoría: otro\n- Motivo: Monto (555555.0 USD) supera el umbral de 1000.0 para rol 'empleado'; requiere aprobación humana.\n\n¿Apruebas este gasto? Responde 'aprobar' o 'rechazar'."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "extractor",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"concepto\":\"Contrato\",\"monto\":555555.0,\"moneda\":\"USD\",\"categoria\":\"otro\",\"proveedor\":null}",
+                      "thought_signature": "EqsICqgIAWkUfRPW3vsDzWfCTfW9PZJ9tme8EiexbDdZ5g1ZViFstu8Pb3lmDJ0u3bmh_atj5vEbBCagrPkH1JzSJQQ-DZf4OTuBE7ZFLk6eyJFRtiky_mgd0Hr8uBkstc35xmR_b7Qe0uW3Csu_GFIvqRqz9lSdqHiAVXNYT6-AYCkiULyWEOwGRZE9NRPszLXMTO6sLWnjDkQXQoQQf4jPAbq-oGLzPPxjw0goMHfKG-g__y0fAGldmo6hbeKx4SxHvjSEMjBhAjgHJFPO62lI3OlqO-SiU5vIOryY7rRZ_cyJQjxXoWvaHF9pbVqaqt48XIcGWmV--Ofo37QGAALoS7INizm1wYADQy1n48Jjc0JzDmfM_8KbcjXJj31buqMUrc417YSChL5tzNywEmtjxYXJGnFu74EzmOYdnHBEU3seikWEi4xDbSJI-1bksHZJUwpfLhWkjVusLviovLg0RkEzJoh3ml7FD4yPObYBc1D88MyjnYwJlTGVBiof-11TNqno3Y_t08skKdOShS5C3HInS8LCwkbPRMEJMHr7EkCXrhcIUjrrEW7IYQEHTBQ1iUAUfbpzie4AcPxd3t57ZLJuPNdsOSk2RYzZM5jd4QNgJHoauPYdD8STeJHeDWq3MdPhRfSIR3VDMrJRrdmumbURQFxlZZqW2zXpxB8e-R1XOL4a0E8hN2L_3RzbVJcXZK_cbGLa995E2p22_9cvAbwKckPwfyP-fEUc5Wzuv8_vB82SMqzE7YOurhsfck_oIeJfGjhVIm1hHIlIarryTyy35LCRVl_EKPEukAxfsvFUlMH40h9k7RR_dTYNzYJPvqMnh52YBxShkzMjC9wFHYoIV05wPah7p6AMS-W8cybHJP2B7qX97-7RgEYzWdXfclf1siOmymVRHXvkU_g7GdM3RRMMKNVy9Km7fjypyvMBDknGpxAy_aamUu7RnNhkoffXRNZF39eioMqaLwPi4GN1UbxipvhRcvC8up1Ja8BjRVPYqKw-50n-U1MF2WuSVLg0fN6-1ccOlHeKGp4FlOvk2cpJB4cB5ajR20ksyN9PrcHi9mmWpBuSdTTm0WB9U4J1W-eA_08fBN2GSQ7Fa8EFkdylVD7ySJZghyaREwvVzpuBctqe3fku80Oo5fUaZ-EDiGiv1SRPEQdr_2WtjXREwaaukFf1zN5yN6o7bh-jUk6bcy0JjyCqbdRDsN7CN9MW1hxTX6zPseVtmRxFHqzedwymNr0mH33vzdDkeDrHRVZuAQQCupgf_5Hc6lQ8juO_ViheI30A8p2sYj9ZqdLK-CbMri8vkrr0VerwokWvM6jNwUWQPCIlq4xpogksOOhbq4vf1CUvKpRNdXHb7G4U2oSTMwOSALJdMifoAZA4d_N9RwwFIR5DeZy_eeDo5Hk9X_7HFFnmoEc="
+                    }
+                  ],
+                  "role": "model"
+                },
+                "usage_metadata": {
+                  "candidates_token_count": 32,
+                  "prompt_token_count": 101,
+                  "prompt_tokens_details": [
+                    {
+                      "modality": "TEXT",
+                      "token_count": 101
+                    }
+                  ],
+                  "thoughts_token_count": 291,
+                  "total_token_count": 424
+                },
+                "model_version": "gemini-3.6-flash"
+              },
+              {
+                "author": "expense_approval_workflow"
+              }
+            ]
+          },
+          "creation_timestamp": 1795469415.598264
+        },
+        {
+          "invocation_id": "e-5a5ed4a8-c207-47a5-b83b-13b92544c9a1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "rechazar"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "❌ Gasto #15 rechazado:\n- Usuario: user (empleado)\n- Concepto: Contrato\n- Monto: 555555.0 USD\n- Motivo: Monto (555555.0 USD) supera el umbral de 1000.0 para rol 'empleado'; requiere aprobación humana."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "expense_approval_workflow"
+              }
+            ]
+          },
+          "creation_timestamp": 1795469431.411053
+        }
+      ],
+      "session_input": {
+        "app_name": "expense_approval_agent",
+        "user_id": "user"
+      },
+      "creation_timestamp": 1795469463.7266471
+    }
+  ],
+  "creation_timestamp": 1795469441.0480828
+}

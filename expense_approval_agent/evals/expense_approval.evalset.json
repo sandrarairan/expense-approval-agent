@@ -1,0 +1,131 @@
+{
+  "eval_set_id": "expense_approval_evals",
+  "name": "expense_approval_evals",
+  "eval_cases": [
+    {
+      "eval_id": "auto_approved_small_expense",
+      "conversation": [
+        {
+          "invocation_id": "case-1-turn-1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Factura de licencias de software por 250 USD de JetBrains"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "✅ Gasto registrado (aprobación automática):\n- Concepto: Licencias de software\n- Monto: 250.0 USD\n- Categoría: software\n- Detalle: Monto (250.0 USD) dentro del límite automático (<= 1000.0)."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": []
+          }
+        }
+      ]
+    },
+    {
+      "eval_id": "hitl_large_expense_approved",
+      "conversation": [
+        {
+          "invocation_id": "case-2-turn-1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Contrato de consultoría cloud por 4500 USD con Acme Corp"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "⚠️ Aprobación humana requerida:\n- Concepto: Contrato de consultoría cloud\n- Monto: 4500.0 USD\n- Categoría: servicios\n- Motivo: Monto (4500.0 USD) supera el umbral de 1000.0; requiere aprobación humana.\n\n¿Apruebas este gasto? Responde 'aprobar' o 'rechazar'."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": []
+          }
+        },
+        {
+          "invocation_id": "case-2-turn-2",
+          "user_content": {
+            "parts": [
+              {
+                "text": "aprobar"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "✅ Gasto registrado (aprobación humana):\n- Concepto: Contrato de consultoría cloud\n- Monto: 4500.0 USD\n- Categoría: servicios\n- Detalle: Monto (4500.0 USD) supera el umbral de 1000.0; requiere aprobación humana."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": []
+          }
+        }
+      ]
+    },
+    {
+      "eval_id": "hitl_large_expense_rejected",
+      "conversation": [
+        {
+          "invocation_id": "case-3-turn-1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Compra de servidores por 3200 EUR"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "⚠️ Aprobación humana requerida:\n- Concepto: Compra de servidores\n- Monto: 3200.0 EUR\n- Categoría: hardware\n- Motivo: Monto (3200.0 EUR) supera el umbral de 1000.0; requiere aprobación humana.\n\n¿Apruebas este gasto? Responde 'aprobar' o 'rechazar'."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": []
+          }
+        },
+        {
+          "invocation_id": "case-3-turn-2",
+          "user_content": {
+            "parts": [
+              {
+                "text": "rechazar"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "❌ Gasto rechazado:\n- Concepto: Compra de servidores\n- Monto: 3200.0 EUR\n- Motivo: Monto (3200.0 EUR) supera el umbral de 1000.0; requiere aprobación humana."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": []
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "auto_approved_small_expense",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Factura de licencias de software por 250 USD de JetBrains"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "large_expense_triggers_hitl",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Contrato de consultoría cloud por 4500 USD con Acme Corp"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "invalid_zero_amount_rejected",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Factura de prueba por 0 USD"
+          }
+        ]
+      }
+    }
+  ]
+}

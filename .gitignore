@@ -21,3 +21,5 @@ artifacts/
 frontend/node_modules/
 frontend/.next/
 frontend/.env.local
+frontend/next-env.d.ts
+frontend/package-lock.json

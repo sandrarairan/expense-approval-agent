@@ -172,9 +172,17 @@ Abre `http://localhost:8000` y selecciona `expense_approval_agent`.
 .venv/bin/python -m expense_approval_agent.run_with_persistence
 ```
 
-### 4. Evaluación (`adk eval`)
+### 4. Evaluación (`adk eval` y CI/CD con Pytest)
+Con CLI de ADK:
 ```bash
 .venv/bin/adk eval expense_approval_agent expense_approval_agent/evals/expense_approval.evalset.json \
   --config_file_path=expense_approval_agent/evals/eval_config.json \
   --print_detailed_results
 ```
+
+Con Pytest + `AgentEvaluator` (CI/CD Gate local y en `.github/workflows/eval-ci.yml`):
+```bash
+uv pip install --only-binary cryptography -e ".[dev]"
+.venv/bin/pytest tests/test_evals.py -v -s
+```
+> Para que corra automáticamente en GitHub Actions, agrega `GOOGLE_API_KEY` en **Settings → Secrets and variables → Actions**.

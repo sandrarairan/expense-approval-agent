@@ -1,11 +1,15 @@
+import os
+
 from google.adk.agents import LlmAgent
 
 from ..schemas import ExpenseExtraction
 
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
+
 # Sub-agente especializado únicamente en extracción estructurada (texto, PDF o imagen)
 extractor_agent = LlmAgent(
     name="extractor",
-    model="gemini-3.6-flash",
+    model=GEMINI_MODEL,
     description="Extrae datos estructurados de facturas, recibos o contratos (texto, PDF o imagen).",
     instruction="""
     Eres un extractor multimodal de facturas y contratos.
